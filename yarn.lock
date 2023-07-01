@@ -7680,7 +7680,7 @@ react-refresh@^0.11.0:
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.11.0.tgz#77198b944733f0f1f1a90e791de4541f9f074046"
   integrity sha512-F27qZr8uUqwhWZboondsPx8tnC3Ct3SxZA3V5WyEvujRyyNv0VYPhoBg1gZ8/MV5tubQp76Trw8lTv9hzRBa+A==
 
-react-scripts@5.0.1:
+react-scripts@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/react-scripts/-/react-scripts-5.0.1.tgz#6285dbd65a8ba6e49ca8d651ce30645a6d980003"
   integrity sha512-8VAmEm/ZAwQzJ+GOMLbBsTdDKOpuZh7RPs0UymvBR2vRk4iZWCskjbFnxqjrzoIvlNNRZ3QJFx6/qDSi6zSnaQ==
@@ -7992,10 +7992,10 @@ rsuite-table@^5.10.6:
     lodash "^4.17.21"
     react-is "^17.0.2"
 
-rsuite@^5.35.1:
-  version "5.35.1"
-  resolved "https://registry.yarnpkg.com/rsuite/-/rsuite-5.35.1.tgz#2b052bbdf392360e538c40d80ca5a8115f0e7151"
-  integrity sha512-3Noc/pxnTODyCNrDJ0UQl77lHL0FIHAN8cHrBGhe16DJ+R76z3jZ7Lzkeb6TySMCXhUdGqBlCnfFll4o/0idzQ==
+rsuite@^5.36.0:
+  version "5.36.0"
+  resolved "https://registry.yarnpkg.com/rsuite/-/rsuite-5.36.0.tgz#88a68ffe826ad7d5133470e58ba76fa5f78e834d"
+  integrity sha512-RatQ6tT1E3nipCXJ2Bba99JRZ++rxessH4uZh61DJkUBZAPwkPtw+ix9iQdtxxkw4gw8g0mcpqAqQ3eFTLWGSA==
   dependencies:
     "@babel/runtime" "^7.20.1"
     "@juggle/resize-observer" "^3.4.0"

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "rsuite/dist/rsuite.min.css";
-import { DateRangePicker, Input, CustomProvider } from "rsuite";
+import { DateRangePicker, CustomProvider } from "rsuite";
 import format from "date-fns/format";
 import subDays from "date-fns/subDays";
 import addDays from "date-fns/addDays";
@@ -30,10 +30,6 @@ const CustomDateRangePicker = () => {
       setPickedRange([startDate, endDate]);
     }
   }, [startDate, endDate]);
-  const labelValue = `${format(PickedRange[0], "yyyy-MM-dd")} - ${format(
-    PickedRange[1],
-    "yyyy-MM-dd"
-  )}`;
   const ranges = [
     {
       label: "오늘",
@@ -95,27 +91,33 @@ const CustomDateRangePicker = () => {
       placement: "left",
       closeOverlay: false,
     },
-    // {
-    //   label: `${format(PickedRange[0], "yyyy-MM-dd")} - ${format(
-    //     PickedRange[1],
-    //     "yyyy-MM-dd"
-    //   )}`,
-    //   value: PickedRange,
-    // },
     {
-      label: (
-        <Input className="SelectRange" plaintext value={labelValue} readOnly />
-      ),
+      label: `${format(PickedRange[0], "yyyy-MM-dd")} - ${format(
+        PickedRange[1],
+        "yyyy-MM-dd"
+      )}`,
       value: PickedRange,
       readOnly: true,
       closeOverlay: false,
     },
   ];
+
   const customLocale = {
     ok: "확인", // DateRangePicker의 버튼 이름 변경
   };
-  const rsetRange = () => {
+
+  //DateRangePicker 기간 삭제시 PickedRange 초기화
+  const resetRange = () => {
     setPickedRange([new Date(), new Date()]);
+  };
+
+  //달력 선택 안하고 닫을 시의 PickedRange 값 설정
+  const CloseCal = () => {
+    if (selectedDate !== null) {
+      setPickedRange(selectedDate);
+    } else {
+      setPickedRange([new Date(), new Date()]);
+    }
   };
   return (
     <CustomProvider locale={koKR}>
@@ -128,8 +130,9 @@ const CustomDateRangePicker = () => {
         ranges={ranges}
         locale={customLocale}
         placeholder="조회 기간 선택"
-        onClean={rsetRange}
+        onClean={resetRange}
         editable={false}
+        onClose={CloseCal}
       />
     </CustomProvider>
   );

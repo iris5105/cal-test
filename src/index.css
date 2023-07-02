@@ -16,3 +16,8 @@ code {
 #root {
   padding: 10px;
 }
+.rs-picker-daterange-header {
+  visibility: hidden;
+  padding: 0px 0px !important;
+  height: 0;
+}

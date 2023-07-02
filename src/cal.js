@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "rsuite/dist/rsuite.min.css";
-import { DateRangePicker } from "rsuite";
+import { DateRangePicker, Input, CustomProvider } from "rsuite";
 import format from "date-fns/format";
+import koKR from "rsuite/locales/ko_KR";
 
 const CustomDateRangePicker = () => {
   const [selectedDate, setSelectedDate] = useState([new Date(), new Date()]);
@@ -16,8 +17,6 @@ const CustomDateRangePicker = () => {
     if (value[0] && value[1]) {
       setStartDate(value[0]);
       setEndDate(value[1]);
-      console.log("startDate: ", startDate);
-      console.log("endDate: ", endDate);
       return `${format(value[0], formatStr)} - ${format(value[1], formatStr)}`;
     }
   };
@@ -26,24 +25,43 @@ const CustomDateRangePicker = () => {
       setPickedRange([startDate, endDate]);
     }
   }, [startDate, endDate]);
+  const labelValue = `${format(PickedRange[0], "yyyy-MM-dd")} - ${format(
+    PickedRange[1],
+    "yyyy-MM-dd"
+  )}`;
   const ranges = [
+    // {
+    //   label: `${format(PickedRange[0], "yyyy-MM-dd")} - ${format(
+    //     PickedRange[1],
+    //     "yyyy-MM-dd"
+    //   )}`,
+    //   value: PickedRange,
+    // },
     {
-      label: `${format(PickedRange[0], "yyyy-MM-dd")} - ${format(
-        PickedRange[1],
-        "yyyy-MM-dd"
-      )}`,
+      label: (
+        <Input className="SelectRange" plaintext value={labelValue} readOnly />
+      ),
       value: PickedRange,
+      readOnly: true,
+      closeOverlay: false,
     },
   ];
+  const customLocale = {
+    ok: "확인", // DateRangePicker의 버튼 이름 변경
+  };
 
   return (
-    <DateRangePicker
-      format="yyyy-MM-dd"
-      renderValue={renderValue}
-      value={selectedDate}
-      onChange={handleDateChange}
-      ranges={ranges}
-    />
+    <CustomProvider locale={koKR}>
+      <DateRangePicker
+        format="yyyy-MM-dd"
+        renderValue={renderValue}
+        value={selectedDate}
+        onChange={handleDateChange}
+        ranges={ranges}
+        locale={customLocale}
+        closeLabel="Close"
+      />
+    </CustomProvider>
   );
 };
 
